@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { Triangle, Circle, Square } = require('./lib/shape');
 
 //promt user for logo criteria
 function promptUser () {
@@ -37,4 +38,20 @@ function promptUser () {
             },
 
         ]);
+}
+
+
+//generate svg based on responses
+function generateSvg({ text, textColor, shapeColor, selectShape }) {
+    const circle = new Circle(text, textColor, shapeColor).render(); 
+    const triangle = new Triangle(text, textColor, shapeColor).render(); 
+    const square = new Square(text, textColor, shapeColor).render(); 
+    switch (selectShape) {
+        case 'Circle': 
+            return circle;
+        case 'Triangle':
+            return triangle;
+        case 'Square':
+            return square;
+    }
 }
