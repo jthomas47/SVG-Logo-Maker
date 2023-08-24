@@ -55,3 +55,23 @@ function generateSvg({ text, textColor, shapeColor, selectShape }) {
             return square;
     }
 }
+
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+    err ? console.log(err) : console.log('Generated logo.svg')
+    );
+    
+ }
+
+
+function init() {
+    promptUser()
+        .then((answers) => {
+        const logoContent = generateSvg(answers); 
+       writeToFile('logo.svg', logoContent);
+    });
+}
+
+
+init(); 
